@@ -1,4 +1,4 @@
-# 🎵 Frontend para API de Música - LPA2 Taller 4
+# Frontend para API de Música - LPA2 Taller 4
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
@@ -7,39 +7,39 @@
 [![Tests](https://img.shields.io/badge/Tests-27%20passed-green?logo=pytest)](https://pytest.org/)
 [![Code Quality](https://img.shields.io/badge/Code%20Quality-Pre--commit-blue?logo=pre-commit)](https://pre-commit.com/)
 
-## 🚀 Descripción
+## Descripción
 
 Frontend moderno desarrollado con **Next.js 16** y **TypeScript** que consume la API de Música del **lpa2-taller3**. Generado inicialmente con [v0.app](https://v0.app/) y optimizado para producción con testing completo y herramientas de calidad de código.
 
-### ✨ Características
+### Características
 
-- 🎨 **UI Moderna**: Diseño responsivo con Tailwind CSS y Radix UI
-- ⚡ **Rendimiento**: Next.js 16 con Turbopack para desarrollo ultrarrápido
-- 🧪 **Testing Completo**: 27 tests automatizados con pytest y Jest
-- 🔍 **Calidad de Código**: ESLint, Prettier y pre-commit hooks
-- 📚 **Documentación**: API completamente documentada con 22 endpoints
+- **UI Moderna**: Diseño responsivo con Tailwind CSS y Radix UI
+- **Rendimiento**: Next.js 16 con Turbopack para desarrollo ultrarrápido
+- **Testing Completo**: 27 tests automatizados con pytest y Jest
+- **Calidad de Código**: ESLint, Prettier y pre-commit hooks
+- **Documentación**: API completamente documentada con 22 endpoints
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 ```
 lpa2-taller4/
-├── 📁 frontend/                    # Aplicación Next.js
+├── frontend/                          # Aplicación Next.js
 │   ├── app/                       # App Router de Next.js 13+
 │   ├── components/                # Componentes React reutilizables
 │   ├── hooks/                     # Custom hooks
 │   ├── lib/                       # Utilidades y configuración API
 │   ├── types/                     # Tipos TypeScript
 │   └── __tests__/                 # Tests del frontend
-├── 📁 tests/                      # Tests de Python (pytest)
+├── tests/                             # Tests de Python (pytest)
 │   ├── test_documentacion.py      # Tests de documentación API
 │   ├── test_frontend_config.py    # Tests de configuración frontend
 │   ├── test_integracion.py        # Tests de integración
 │   └── test_utils.py              # Tests unitarios y utilidades
-├── 📄 documentacion_api_musica.json    # Documentación completa API
-├── 📄 api_endpoints_para_v0.json       # Endpoints optimizados para v0.app
-├── 📄 .pre-commit-config.yaml         # Configuración pre-commit hooks
-├── 📄 pyproject.toml                  # Configuración pytest y coverage
-└── 🚀 run-tests.sh                   # Script de tests automatizado
+├── documentacion_api_musica.json      # Documentación completa API
+├── api_endpoints_para_v0.json         # Endpoints optimizados para v0.app
+├── .pre-commit-config.yaml            # Configuración pre-commit hooks
+├── pyproject.toml                     # Configuración pytest y coverage
+└── run-tests.sh                       # Script de tests automatizado
 ```
 
 ## 🛠️ Tecnologías Utilizadas
@@ -67,7 +67,7 @@ lpa2-taller4/
 - **GitHub Actions**: CI/CD (configuración lista)
 - **Coverage**: Reportes de cobertura de tests
 
-## 🚀 Instalación y Configuración
+## Instalación y Configuración
 
 ### Prerrequisitos
 
@@ -108,7 +108,7 @@ pip install pre-commit
 pre-commit install
 ```
 
-## 🏃‍♂️ Ejecutar el Proyecto
+## Ejecutar el Proyecto
 
 ### Método 1: Script Automatizado
 
@@ -125,7 +125,7 @@ pre-commit install
 # En una terminal
 cd ../lpa2-taller3
 python main.py
-# ✅ API corriendo en http://127.0.0.1:8000
+# API corriendo en http://127.0.0.1:8000
 ```
 
 #### Frontend
@@ -134,7 +134,7 @@ python main.py
 # En otra terminal
 cd lpa2-taller4/frontend
 pnpm dev
-# ✅ Frontend corriendo en http://localhost:3001
+# Frontend corriendo en http://localhost:3001
 ```
 
 ## 🧪 Testing
@@ -196,8 +196,8 @@ pnpm type-check
 ### Endpoints Principales
 
 - **👥 Usuarios**: 6 endpoints (CRUD + favoritos)
-- **🎵 Canciones**: 6 endpoints (CRUD + búsqueda avanzada)
-- **⭐ Favoritos**: 6 endpoints (gestión completa)
+- **Canciones**: 6 endpoints (CRUD + búsqueda avanzada)
+- **Favoritos**: 6 endpoints (gestión completa)
 - **🔧 Sistema**: 4 endpoints (health, info, frontend)
 
 ### Documentación Interactiva

@@ -332,9 +332,9 @@ export default function DocumentationSection() {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="overview">Información General</TabsTrigger>
-          <TabsTrigger value="usuarios">👤 Usuarios</TabsTrigger>
-          <TabsTrigger value="canciones">🎵 Canciones</TabsTrigger>
-          <TabsTrigger value="favoritos">⭐ Favoritos</TabsTrigger>
+          <TabsTrigger value="usuarios">Usuarios</TabsTrigger>
+          <TabsTrigger value="canciones">Canciones</TabsTrigger>
+          <TabsTrigger value="favoritos">Favoritos</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
