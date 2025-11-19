@@ -1,0 +1,53 @@
+repos:
+  # Hooks básicos de pre-commit
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        description: "Eliminar espacios en blanco al final de líneas"
+      - id: end-of-file-fixer
+        description: "Asegurar nueva línea al final de archivos"
+      - id: check-yaml
+        description: "Validar sintaxis YAML"
+      - id: check-json
+        description: "Validar sintaxis JSON"
+      - id: check-merge-conflict
+        description: "Detectar marcadores de merge conflict"
+      - id: check-added-large-files
+        description: "Prevenir archivos grandes"
+        args: ['--maxkb=1000']
+      - id: mixed-line-ending
+        description: "Normalizar terminaciones de línea"
+
+  # Hooks para JavaScript/TypeScript
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0
+    hooks:
+      - id: prettier
+        description: "Formatear código JavaScript/TypeScript"
+        files: \.(js|jsx|ts|tsx|json|css|md)$
+        args: [--write]
+
+  # Hooks para Python (solo si tienes archivos Python en el repo)
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        description: "Formatear código Python"
+        language_version: python3
+
+  # Linting para Python
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        description: "Linting Python"
+        args: [--max-line-length=88, --ignore=E231]
+
+  # Seguridad para archivos sensibles (deshabilitado temporalmente)
+  # - repo: https://github.com/Yelp/detect-secrets
+  #   rev: v1.4.0
+  #   hooks:
+  #     - id: detect-secrets
+  #       description: "Detectar secretos y credenciales"
+  #       args: ['--baseline', '.secrets.baseline']

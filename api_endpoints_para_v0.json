@@ -1,0 +1,274 @@
+{
+  "api_base_url": "http://127.0.0.1:8000",
+  "descripcion": "API RESTful de Música con FastAPI - 22 endpoints para gestión de usuarios, canciones y favoritos",
+
+  "endpoints_principales": [
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/",
+      "metodo": "GET",
+      "descripcion": "Listar usuarios con paginación",
+      "query_params": "?skip=0&limit=100",
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "nombre": "Juan Pérez",
+          "correo": "juan@ejemplo.com",
+          "fecha_registro": "2024-11-13T10:30:00"
+        }
+      ],
+      "errores": { "500": "Server Error" }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/",
+      "metodo": "POST",
+      "descripcion": "Crear nuevo usuario",
+      "body_request": {
+        "nombre": "Juan Pérez",
+        "correo": "juan@ejemplo.com"
+      },
+      "body_response": {
+        "id": 1,
+        "nombre": "Juan Pérez",
+        "correo": "juan@ejemplo.com",
+        "fecha_registro": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "400": "Email ya registrado",
+        "422": "Datos inválidos"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/{usuario_id}",
+      "metodo": "PUT",
+      "descripcion": "Actualizar usuario",
+      "body_request": {
+        "nombre": "Juan Carlos",
+        "correo": "juancarlos@ejemplo.com"
+      },
+      "body_response": {
+        "id": 1,
+        "nombre": "Juan Carlos",
+        "correo": "juancarlos@ejemplo.com",
+        "fecha_registro": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "400": "Email ya existe",
+        "404": "Usuario no encontrado"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/{usuario_id}",
+      "metodo": "DELETE",
+      "descripcion": "Eliminar usuario",
+      "body_request": null,
+      "body_response": null,
+      "status_code": 204,
+      "errores": { "404": "Usuario no encontrado" }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/",
+      "metodo": "GET",
+      "descripcion": "Listar canciones con paginación",
+      "query_params": "?skip=0&limit=100",
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "titulo": "Bohemian Rhapsody",
+          "artista": "Queen",
+          "album": "A Night at the Opera",
+          "duracion": 354,
+          "año": 1975,
+          "genero": "Rock",
+          "fecha_creacion": "2024-11-13T10:30:00"
+        }
+      ],
+      "errores": { "500": "Server Error" }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/",
+      "metodo": "POST",
+      "descripcion": "Crear nueva canción",
+      "body_request": {
+        "titulo": "Bohemian Rhapsody",
+        "artista": "Queen",
+        "album": "A Night at the Opera",
+        "duracion": 354,
+        "año": 1975,
+        "genero": "Rock"
+      },
+      "body_response": {
+        "id": 1,
+        "titulo": "Bohemian Rhapsody",
+        "artista": "Queen",
+        "album": "A Night at the Opera",
+        "duracion": 354,
+        "año": 1975,
+        "genero": "Rock",
+        "fecha_creacion": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "422": "Duración inválida o año futuro"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/buscar",
+      "metodo": "GET",
+      "descripcion": "Buscar canciones por múltiples criterios",
+      "query_params": "?titulo=queen&artista=&genero=rock&año=1975&skip=0&limit=10",
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "titulo": "Bohemian Rhapsody",
+          "artista": "Queen",
+          "album": "A Night at the Opera",
+          "duracion": 354,
+          "año": 1975,
+          "genero": "Rock",
+          "fecha_creacion": "2024-11-13T10:30:00"
+        }
+      ],
+      "errores": { "500": "Server Error" }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/{cancion_id}",
+      "metodo": "PUT",
+      "descripcion": "Actualizar canción",
+      "body_request": {
+        "titulo": "We Will Rock You",
+        "artista": "Queen",
+        "album": "News of the World",
+        "duracion": 122,
+        "año": 1977,
+        "genero": "Rock"
+      },
+      "body_response": {
+        "id": 1,
+        "titulo": "We Will Rock You",
+        "artista": "Queen",
+        "album": "News of the World",
+        "duracion": 122,
+        "año": 1977,
+        "genero": "Rock",
+        "fecha_creacion": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "404": "Canción no encontrada",
+        "422": "Datos inválidos"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/{cancion_id}",
+      "metodo": "DELETE",
+      "descripcion": "Eliminar canción",
+      "body_request": null,
+      "body_response": null,
+      "status_code": 204,
+      "errores": { "404": "Canción no encontrada" }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/",
+      "metodo": "GET",
+      "descripcion": "Listar favoritos con datos anidados",
+      "query_params": "?skip=0&limit=100",
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "id_usuario": 1,
+          "id_cancion": 1,
+          "fecha_marcado": "2024-11-13T10:30:00",
+          "usuario": {
+            "id": 1,
+            "nombre": "Juan Pérez",
+            "correo": "juan@ejemplo.com"
+          },
+          "cancion": {
+            "id": 1,
+            "titulo": "Bohemian Rhapsody",
+            "artista": "Queen",
+            "album": "A Night at the Opera",
+            "genero": "Rock"
+          }
+        }
+      ],
+      "errores": { "500": "Server Error" }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/",
+      "metodo": "POST",
+      "descripcion": "Marcar canción como favorita",
+      "body_request": {
+        "id_usuario": 1,
+        "id_cancion": 1
+      },
+      "body_response": {
+        "id": 1,
+        "id_usuario": 1,
+        "id_cancion": 1,
+        "fecha_marcado": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "400": "Ya está marcado como favorito",
+        "404": "Usuario o canción no encontrados"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/{favorito_id}",
+      "metodo": "DELETE",
+      "descripcion": "Eliminar favorito",
+      "body_request": null,
+      "body_response": null,
+      "status_code": 204,
+      "errores": { "404": "Favorito no encontrado" }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/{usuario_id}/favoritos",
+      "metodo": "GET",
+      "descripcion": "Ver favoritos de un usuario específico",
+      "body_request": null,
+      "body_response": {
+        "id": 1,
+        "nombre": "Juan Pérez",
+        "correo": "juan@ejemplo.com",
+        "favoritos": [
+          {
+            "id": 1,
+            "id_cancion": 1,
+            "fecha_marcado": "2024-11-13T10:30:00"
+          }
+        ]
+      },
+      "errores": { "404": "Usuario no encontrado" }
+    }
+  ],
+
+  "validaciones_importantes": {
+    "usuario": {
+      "nombre": "2-100 caracteres, requerido",
+      "correo": "Email válido y único, requerido"
+    },
+    "cancion": {
+      "titulo": "1-200 caracteres, requerido",
+      "artista": "1-100 caracteres, requerido",
+      "album": "1-200 caracteres, requerido",
+      "duracion": "1-3600 segundos, requerido",
+      "año": "1900 hasta año actual, no futuro, requerido",
+      "genero": "1-50 caracteres, requerido"
+    },
+    "favorito": {
+      "id_usuario": "Debe existir en BD",
+      "id_cancion": "Debe existir en BD",
+      "unicidad": "No duplicar favoritos del mismo usuario-canción"
+    }
+  },
+
+  "funcionalidades_especiales": {
+    "paginacion": "Todos los listados soportan skip y limit (máx. 100)",
+    "busqueda_avanzada": "Canciones por título, artista, género, año (parcial y exacta)",
+    "eliminacion_cascada": "Al eliminar usuario/canción se eliminan sus favoritos",
+    "datos_anidados": "Favoritos incluyen datos completos de usuario y canción"
+  }
+}

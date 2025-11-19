@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPA2 Taller 4 - Frontend API Música | Juan Alejandro Ramirez</title>
+    <meta name="description" content="Frontend moderno con Next.js y TypeScript para API de Música - Proyecto LPA2 Universidad">
+    <meta name="author" content="Juan Alejandro Ramirez Sanchez">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="LPA2 Taller 4 - Frontend API Música">
+    <meta property="og:description" content="Frontend moderno desarrollado con Next.js 16 y TypeScript que consume API de Música con FastAPI">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .tech-badge {
+            transition: all 0.2s ease;
+        }
+        .tech-badge:hover {
+            transform: scale(1.05);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    🎵 LPA2 Taller 4
+                </h1>
+                <h2 class="text-xl md:text-2xl mb-6 opacity-90">
+                    Frontend para API de Música
+                </h2>
+                <div class="flex flex-wrap justify-center gap-3 mb-6">
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">Next.js 16</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">TypeScript</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">FastAPI</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">27 Tests ✅</span>
+                </div>
+                <p class="text-lg opacity-90 max-w-3xl mx-auto">
+                    Frontend moderno desarrollado con <strong>Next.js 16</strong> y <strong>TypeScript</strong>
+                    que consume la API de Música del lpa2-taller3. Incluye testing completo,
+                    herramientas de calidad de código y documentación profesional.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Información del Estudiante -->
+    <section class="py-12 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">📋 Información del Proyecto</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-3">👨‍🎓 Estudiante</h4>
+                        <p class="text-gray-600 mb-2"><strong>Nombre:</strong> Juan Alejandro Ramirez Sanchez</p>
+                        <p class="text-gray-600 mb-2"><strong>GitHub:</strong> <a href="https://github.com/Juanrs69" target="_blank" class="text-blue-600 hover:underline">@Juanrs69</a></p>
+                        <p class="text-gray-600 mb-4"><strong>Repositorio:</strong> <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank" class="text-blue-600 hover:underline">lpa2-taller4</a></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-3">📅 Detalles del Taller</h4>
+                        <p class="text-gray-600 mb-2"><strong>Materia:</strong> Lenguajes de Programación Avanzados 2</p>
+                        <p class="text-gray-600 mb-2"><strong>Taller:</strong> #4 - Frontend para API de Música</p>
+                        <p class="text-gray-600 mb-2"><strong>Fecha:</strong> Noviembre 2024</p>
+                        <p class="text-gray-600"><strong>Estado:</strong> <span class="bg-green-100 text-green-800 px-2 py-1 rounded">✅ Completado</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologías Utilizadas -->
+    <section class="py-12 bg-gray-100 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">🛠️ Tecnologías Utilizadas</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
+                    <div class="text-4xl mb-4">⚛️</div>
+                    <h4 class="font-bold text-gray-800">Next.js 16</h4>
+                    <p class="text-gray-600 text-sm">Framework React con Turbopack</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
+                    <div class="text-4xl mb-4">📘</div>
+                    <h4 class="font-bold text-gray-800">TypeScript</h4>
+                    <p class="text-gray-600 text-sm">Tipado estático para JavaScript</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h4 class="font-bold text-gray-800">Tailwind CSS</h4>
+                    <p class="text-gray-600 text-sm">Framework CSS utilitario</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h4 class="font-bold text-gray-800">FastAPI</h4>
+                    <p class="text-gray-600 text-sm">API REST con Python</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características del Proyecto -->
+    <section class="py-12 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">✨ Características Principales</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="text-3xl mb-4">🧪</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Testing Completo</h4>
+                    <p class="text-gray-600 mb-4">27 tests automatizados con pytest y Jest para garantizar calidad del código.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Tests de documentación</li>
+                        <li>• Tests de configuración</li>
+                        <li>• Tests de integración</li>
+                        <li>• Tests unitarios</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="text-3xl mb-4">🔍</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Calidad de Código</h4>
+                    <p class="text-gray-600 mb-4">ESLint, Prettier y pre-commit hooks para mantener código limpio y consistente.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Pre-commit hooks automáticos</li>
+                        <li>• Formateo de código</li>
+                        <li>• Linting avanzado</li>
+                        <li>• Type checking estricto</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="text-3xl mb-4">📚</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Documentación Completa</h4>
+                    <p class="text-gray-600 mb-4">API completamente documentada con 22 endpoints y ejemplos de uso.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Swagger UI interactivo</li>
+                        <li>• Documentación JSON</li>
+                        <li>• README profesional</li>
+                        <li>• Guías de instalación</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="text-3xl mb-4">🎵</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Gestión de Música</h4>
+                    <p class="text-gray-600 mb-4">CRUD completo para usuarios, canciones y sistema de favoritos.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Gestión de usuarios</li>
+                        <li>• Catálogo de canciones</li>
+                        <li>• Sistema de favoritos</li>
+                        <li>• Búsqueda avanzada</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="text-3xl mb-4">📱</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">UX/UI Moderna</h4>
+                    <p class="text-gray-600 mb-4">Interfaz responsiva con componentes accesibles y tema oscuro/claro.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Diseño responsivo</li>
+                        <li>• Dark/Light mode</li>
+                        <li>• Componentes Radix UI</li>
+                        <li>• Animaciones suaves</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Rendimiento Optimizado</h4>
+                    <p class="text-gray-600 mb-4">Next.js 16 con Turbopack para desarrollo y build ultrarrápidos.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Turbopack bundler</li>
+                        <li>• Static generation</li>
+                        <li>• Code splitting</li>
+                        <li>• Image optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arquitectura del Sistema -->
+    <section class="py-12 bg-gray-100 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">🏗️ Arquitectura del Sistema</h3>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">📁 Estructura del Proyecto</h4>
+                        <div class="code-block text-sm">
+lpa2-taller4/
+├── 📁 frontend/                 # Next.js App
+│   ├── app/                    # App Router
+│   ├── components/             # React Components
+│   ├── hooks/                  # Custom Hooks
+│   ├── lib/                    # API Client
+│   └── __tests__/              # Frontend Tests
+├── 📁 tests/                   # Python Tests
+│   ├── test_documentacion.py   # API Docs Tests
+│   ├── test_frontend_config.py # Config Tests
+│   ├── test_integracion.py     # Integration Tests
+│   └── test_utils.py           # Unit Tests
+├── 📁 docs/                    # GitHub Pages
+├── 📄 documentacion_api_musica.json
+├── 📄 api_endpoints_para_v0.json
+└── 🚀 run-tests.sh            # Test Runner
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">🔄 Flujo de Datos</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                                <p class="text-gray-700">Frontend Next.js (Puerto 3001)</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                                <p class="text-gray-700">API FastAPI (Puerto 8000)</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                                <p class="text-gray-700">Base de Datos SQLite</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
+                                <p class="text-gray-700">Tests Automatizados</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <h5 class="font-semibold text-gray-800 mb-3">🔗 Enlaces Importantes</h5>
+                            <div class="space-y-2">
+                                <a href="http://localhost:3001" target="_blank" class="block text-blue-600 hover:underline">• Frontend: http://localhost:3001</a>
+                                <a href="http://127.0.0.1:8000/docs" target="_blank" class="block text-blue-600 hover:underline">• API Docs: http://127.0.0.1:8000/docs</a>
+                                <a href="http://127.0.0.1:8000/health" target="_blank" class="block text-blue-600 hover:underline">• Health Check: /health</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instalación y Uso -->
+    <section class="py-12 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">🚀 Instalación y Uso</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">⚡ Ejecución Rápida</h4>
+                    <p class="text-gray-600 mb-4">Script automatizado para ejecutar todo el proyecto:</p>
+                    <div class="code-block">
+# Clonar repositorio
+git clone https://github.com/Juanrs69/lpa2-taller4.git
+cd lpa2-taller4
+
+# Ejecutar tests y verificaciones
+./run-tests.sh
+
+# Ejecutar frontend
+cd frontend && pnpm dev
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">🔧 Configuración Manual</h4>
+                    <p class="text-gray-600 mb-4">Pasos detallados para configuración completa:</p>
+                    <div class="code-block">
+# 1. Backend (API del lpa2-taller3)
+cd ../lpa2-taller3
+python main.py
+
+# 2. Frontend (Nueva terminal)
+cd lpa2-taller4/frontend
+pnpm install
+pnpm dev
+
+# ✅ Frontend: http://localhost:3001
+# ✅ API: http://127.0.0.1:8000
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Métricas del Proyecto -->
+    <section class="py-12 bg-gray-100 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">📊 Métricas del Proyecto</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg p-6 text-center card-hover">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">27</div>
+                    <p class="text-gray-600 font-semibold">Tests Automatizados</p>
+                    <p class="text-xs text-gray-500 mt-1">100% Pasando ✅</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center card-hover">
+                    <div class="text-3xl font-bold text-green-600 mb-2">22</div>
+                    <p class="text-gray-600 font-semibold">Endpoints API</p>
+                    <p class="text-xs text-gray-500 mt-1">Completamente Documentados</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center card-hover">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">5</div>
+                    <p class="text-gray-600 font-semibold">Archivos Docs</p>
+                    <p class="text-xs text-gray-500 mt-1">JSON + Markdown</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center card-hover">
+                    <div class="text-3xl font-bold text-orange-600 mb-2">100%</div>
+                    <p class="text-gray-600 font-semibold">TypeScript</p>
+                    <p class="text-xs text-gray-500 mt-1">Tipado Estricto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enlaces Importantes -->
+    <section class="py-12 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">🔗 Enlaces Importantes</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank"
+                       class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors block">
+                        📱 Repositorio GitHub
+                    </a>
+                    <a href="https://github.com/Juanrs69/lpa2-taller4/blob/main/README.md" target="_blank"
+                       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors block">
+                        📚 Documentación Completa
+                    </a>
+                    <a href="https://github.com/Juanrs69/lpa2-taller4/tree/main/tests" target="_blank"
+                       class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors block">
+                        🧪 Tests del Proyecto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-lg mb-4">
+                <strong>Juan Alejandro Ramirez Sanchez</strong>
+            </p>
+            <p class="opacity-90 mb-4">
+                Lenguajes de Programación Avanzados 2 - Taller 4
+            </p>
+            <p class="text-sm opacity-75">
+                Noviembre 2024 • Desarrollado con ❤️ usando Next.js, TypeScript y FastAPI
+            </p>
+            <div class="mt-6 flex justify-center space-x-4">
+                <a href="https://github.com/Juanrs69" target="_blank"
+                   class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                    GitHub
+                </a>
+                <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank"
+                   class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                    Proyecto
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript para efectos -->
+    <script>
+        // Animación de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de aparición en scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animación
+        document.querySelectorAll('.card-hover').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Contador animado para métricas
+        function animateCounter(element, target, duration = 2000) {
+            const start = performance.now();
+            const initialValue = 0;
+
+            function update(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const currentValue = Math.floor(initialValue + (target - initialValue) * progress);
+                element.textContent = target === 100 ? currentValue + '%' : currentValue;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Animar contadores cuando sean visibles
+        const metricsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target.querySelector('.text-3xl');
+                    const target = parseInt(counter.textContent);
+                    animateCounter(counter, target);
+                    metricsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.grid-cols-2.md\\:grid-cols-4 > div').forEach(el => {
+            metricsObserver.observe(el);
+        });
+    </script>
+</body>
+</html>

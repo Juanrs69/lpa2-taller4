@@ -1,0 +1,472 @@
+{
+  "informacion_general": {
+    "nombre": "API de Música",
+    "version": "1.0.0",
+    "descripcion": "Una API RESTful para gestionar usuarios, canciones y favoritos",
+    "desarrollador": "Juan Alejandro Ramirez Sanchez",
+    "tecnologias": ["FastAPI", "SQLModel", "Pydantic", "SQLite"],
+    "puerto": 8000,
+    "host": "127.0.0.1",
+    "base_url": "http://127.0.0.1:8000",
+    "documentacion_swagger": "http://127.0.0.1:8000/docs",
+    "documentacion_redoc": "http://127.0.0.1:8000/redoc"
+  },
+
+  "estructura_entidades": {
+    "Usuario": {
+      "id": "int (auto-generado)",
+      "nombre": "string (2-100 caracteres)",
+      "correo": "EmailStr (único)",
+      "fecha_registro": "datetime (auto-generado)"
+    },
+    "Cancion": {
+      "id": "int (auto-generado)",
+      "titulo": "string (1-200 caracteres)",
+      "artista": "string (1-100 caracteres)",
+      "album": "string (1-200 caracteres)",
+      "duracion": "int (1-3600 segundos)",
+      "año": "int (1900-2100, no futuro)",
+      "genero": "string (1-50 caracteres)",
+      "fecha_creacion": "datetime (auto-generado)"
+    },
+    "Favorito": {
+      "id": "int (auto-generado)",
+      "id_usuario": "int (foreign key)",
+      "id_cancion": "int (foreign key)",
+      "fecha_marcado": "datetime (auto-generado)"
+    }
+  },
+
+  "endpoints": [
+    {
+      "endpoint": "http://127.0.0.1:8000/",
+      "metodo": "GET",
+      "descripcion": "Servir la aplicación frontend",
+      "body_request": null,
+      "body_response": "HTML - Frontend de la aplicación",
+      "errores": {}
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api",
+      "metodo": "GET",
+      "descripcion": "Información básica de la API",
+      "body_request": null,
+      "body_response": {
+        "message": "Bienvenido a API de Música",
+        "version": "1.0.0",
+        "description": "Una API RESTful para gestionar usuarios, canciones y favoritos",
+        "developer": "Juan Alejandro Ramirez Sanchez",
+        "docs": "/docs",
+        "redoc": "/redoc",
+        "endpoints": {
+          "usuarios": "/api/usuarios",
+          "canciones": "/api/canciones",
+          "favoritos": "/api/favoritos"
+        }
+      },
+      "errores": {}
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/health",
+      "metodo": "GET",
+      "descripcion": "Health check de la API",
+      "body_request": null,
+      "body_response": {
+        "status": "healthy|unhealthy",
+        "database": "connected|disconnected",
+        "environment": "development",
+        "version": "1.0.0"
+      },
+      "errores": {}
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/",
+      "metodo": "GET",
+      "descripcion": "Listar todos los usuarios con paginación",
+      "parametros_query": {
+        "skip": "int (default: 0) - registros a saltar",
+        "limit": "int (default: 100, max: 100) - máximo registros"
+      },
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "nombre": "string",
+          "correo": "email@ejemplo.com",
+          "fecha_registro": "2024-11-13T10:30:00"
+        }
+      ],
+      "errores": {}
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/",
+      "metodo": "POST",
+      "descripcion": "Crear un nuevo usuario",
+      "body_request": {
+        "nombre": "string (requerido, 2-100 caracteres)",
+        "correo": "email@ejemplo.com (requerido, único)"
+      },
+      "body_response": {
+        "id": 1,
+        "nombre": "string",
+        "correo": "email@ejemplo.com",
+        "fecha_registro": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "400": "Bad Request - El correo electrónico ya está registrado",
+        "422": "Unprocessable Entity - Datos de entrada inválidos"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/{usuario_id}",
+      "metodo": "GET",
+      "descripcion": "Obtener un usuario por su ID",
+      "body_request": null,
+      "body_response": {
+        "id": 1,
+        "nombre": "string",
+        "correo": "email@ejemplo.com",
+        "fecha_registro": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "404": "Not Found - Usuario no encontrado"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/{usuario_id}",
+      "metodo": "PUT",
+      "descripcion": "Actualizar un usuario existente",
+      "body_request": {
+        "nombre": "string (opcional, 2-100 caracteres)",
+        "correo": "email@ejemplo.com (opcional, único)"
+      },
+      "body_response": {
+        "id": 1,
+        "nombre": "string",
+        "correo": "email@ejemplo.com",
+        "fecha_registro": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "400": "Bad Request - El correo electrónico ya está registrado",
+        "404": "Not Found - Usuario no encontrado",
+        "422": "Unprocessable Entity - Datos de entrada inválidos"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/{usuario_id}",
+      "metodo": "DELETE",
+      "descripcion": "Eliminar un usuario y todos sus favoritos",
+      "body_request": null,
+      "body_response": null,
+      "status_code": 204,
+      "errores": {
+        "404": "Not Found - Usuario no encontrado"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/usuarios/{usuario_id}/favoritos",
+      "metodo": "GET",
+      "descripcion": "Listar todas las canciones favoritas de un usuario",
+      "body_request": null,
+      "body_response": {
+        "id": 1,
+        "nombre": "string",
+        "correo": "email@ejemplo.com",
+        "fecha_registro": "2024-11-13T10:30:00",
+        "favoritos": [
+          {
+            "id": 1,
+            "id_usuario": 1,
+            "id_cancion": 1,
+            "fecha_marcado": "2024-11-13T10:30:00"
+          }
+        ]
+      },
+      "errores": {
+        "404": "Not Found - Usuario no encontrado"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/",
+      "metodo": "GET",
+      "descripcion": "Listar todas las canciones con paginación",
+      "parametros_query": {
+        "skip": "int (default: 0) - registros a saltar",
+        "limit": "int (default: 100, max: 100) - máximo registros"
+      },
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "titulo": "string",
+          "artista": "string",
+          "album": "string",
+          "duracion": 180,
+          "año": 2024,
+          "genero": "string",
+          "fecha_creacion": "2024-11-13T10:30:00"
+        }
+      ],
+      "errores": {}
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/",
+      "metodo": "POST",
+      "descripcion": "Crear una nueva canción",
+      "body_request": {
+        "titulo": "string (requerido, 1-200 caracteres)",
+        "artista": "string (requerido, 1-100 caracteres)",
+        "album": "string (requerido, 1-200 caracteres)",
+        "duracion": "int (requerido, 1-3600 segundos)",
+        "año": "int (requerido, 1900-año actual)",
+        "genero": "string (requerido, 1-50 caracteres)"
+      },
+      "body_response": {
+        "id": 1,
+        "titulo": "string",
+        "artista": "string",
+        "album": "string",
+        "duracion": 180,
+        "año": 2024,
+        "genero": "string",
+        "fecha_creacion": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "422": "Unprocessable Entity - Datos de entrada inválidos (año futuro, duración inválida, etc.)"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/buscar",
+      "metodo": "GET",
+      "descripcion": "Buscar canciones por diferentes criterios",
+      "parametros_query": {
+        "titulo": "string (opcional) - buscar por título (parcial, case-insensitive)",
+        "artista": "string (opcional) - buscar por artista (parcial, case-insensitive)",
+        "genero": "string (opcional) - buscar por género (parcial, case-insensitive)",
+        "año": "int (opcional) - buscar por año (exacto)",
+        "skip": "int (default: 0) - registros a saltar",
+        "limit": "int (default: 100, max: 100) - máximo registros"
+      },
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "titulo": "string",
+          "artista": "string",
+          "album": "string",
+          "duracion": 180,
+          "año": 2024,
+          "genero": "string",
+          "fecha_creacion": "2024-11-13T10:30:00"
+        }
+      ],
+      "errores": {}
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/{cancion_id}",
+      "metodo": "GET",
+      "descripcion": "Obtener una canción por su ID",
+      "body_request": null,
+      "body_response": {
+        "id": 1,
+        "titulo": "string",
+        "artista": "string",
+        "album": "string",
+        "duracion": 180,
+        "año": 2024,
+        "genero": "string",
+        "fecha_creacion": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "404": "Not Found - Canción no encontrada"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/{cancion_id}",
+      "metodo": "PUT",
+      "descripcion": "Actualizar una canción existente",
+      "body_request": {
+        "titulo": "string (opcional, 1-200 caracteres)",
+        "artista": "string (opcional, 1-100 caracteres)",
+        "album": "string (opcional, 1-200 caracteres)",
+        "duracion": "int (opcional, 1-3600 segundos)",
+        "año": "int (opcional, 1900-año actual)",
+        "genero": "string (opcional, 1-50 caracteres)"
+      },
+      "body_response": {
+        "id": 1,
+        "titulo": "string",
+        "artista": "string",
+        "album": "string",
+        "duracion": 180,
+        "año": 2024,
+        "genero": "string",
+        "fecha_creacion": "2024-11-13T10:30:00"
+      },
+      "errores": {
+        "404": "Not Found - Canción no encontrada",
+        "422": "Unprocessable Entity - Datos de entrada inválidos"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/canciones/{cancion_id}",
+      "metodo": "DELETE",
+      "descripcion": "Eliminar una canción y todos sus favoritos asociados",
+      "body_request": null,
+      "body_response": null,
+      "status_code": 204,
+      "errores": {
+        "404": "Not Found - Canción no encontrada"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/",
+      "metodo": "GET",
+      "descripcion": "Listar todos los favoritos con paginación",
+      "parametros_query": {
+        "skip": "int (default: 0) - registros a saltar",
+        "limit": "int (default: 100, max: 100) - máximo registros"
+      },
+      "body_request": null,
+      "body_response": [
+        {
+          "id": 1,
+          "id_usuario": 1,
+          "id_cancion": 1,
+          "fecha_marcado": "2024-11-13T10:30:00",
+          "usuario": {
+            "id": 1,
+            "nombre": "string",
+            "correo": "email@ejemplo.com",
+            "fecha_registro": "2024-11-13T10:30:00"
+          },
+          "cancion": {
+            "id": 1,
+            "titulo": "string",
+            "artista": "string",
+            "album": "string",
+            "duracion": 180,
+            "año": 2024,
+            "genero": "string",
+            "fecha_creacion": "2024-11-13T10:30:00"
+          }
+        }
+      ],
+      "errores": {}
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/",
+      "metodo": "POST",
+      "descripcion": "Marcar una canción como favorita para un usuario",
+      "body_request": {
+        "id_usuario": "int (requerido)",
+        "id_cancion": "int (requerido)"
+      },
+      "body_response": {
+        "id": 1,
+        "id_usuario": 1,
+        "id_cancion": 1,
+        "fecha_marcado": "2024-11-13T10:30:00",
+        "usuario": null,
+        "cancion": null
+      },
+      "errores": {
+        "400": "Bad Request - Esta canción ya está marcada como favorita para este usuario",
+        "404": "Not Found - Usuario no encontrado / Canción no encontrada"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/{favorito_id}",
+      "metodo": "GET",
+      "descripcion": "Obtener un favorito por su ID",
+      "body_request": null,
+      "body_response": {
+        "id": 1,
+        "id_usuario": 1,
+        "id_cancion": 1,
+        "fecha_marcado": "2024-11-13T10:30:00",
+        "usuario": null,
+        "cancion": null
+      },
+      "errores": {
+        "404": "Not Found - Favorito no encontrado"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/{favorito_id}",
+      "metodo": "DELETE",
+      "descripcion": "Eliminar un favorito (desmarcar como favorito)",
+      "body_request": null,
+      "body_response": null,
+      "status_code": 204,
+      "errores": {
+        "404": "Not Found - Favorito no encontrado"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/{id_usuario}/canciones/{id_cancion}",
+      "metodo": "POST",
+      "descripcion": "Marcar una canción específica como favorita para un usuario específico (endpoint alternativo)",
+      "body_request": null,
+      "body_response": {
+        "id": 1,
+        "id_usuario": 1,
+        "id_cancion": 1,
+        "fecha_marcado": "2024-11-13T10:30:00",
+        "usuario": null,
+        "cancion": null
+      },
+      "errores": {
+        "400": "Bad Request - Esta canción ya está marcada como favorita para este usuario",
+        "404": "Not Found - Usuario no encontrado / Canción no encontrada"
+      }
+    },
+    {
+      "endpoint": "http://127.0.0.1:8000/api/favoritos/{id_usuario}/canciones/{id_cancion}",
+      "metodo": "DELETE",
+      "descripcion": "Eliminar un favorito específico por usuario y canción",
+      "body_request": null,
+      "body_response": null,
+      "status_code": 204,
+      "errores": {
+        "404": "Not Found - Favorito no encontrado"
+      }
+    }
+  ],
+
+  "codigos_error_comunes": {
+    "200": "OK - Operación exitosa",
+    "201": "Created - Recurso creado exitosamente",
+    "204": "No Content - Operación exitosa sin contenido de respuesta",
+    "400": "Bad Request - Datos duplicados o conflictos de integridad",
+    "404": "Not Found - Recurso no encontrado",
+    "422": "Unprocessable Entity - Datos de entrada inválidos (validaciones Pydantic)",
+    "500": "Internal Server Error - Error interno del servidor"
+  },
+
+  "configuracion_cors": {
+    "allow_origins": ["*"],
+    "allow_credentials": true,
+    "allow_methods": ["*"],
+    "allow_headers": ["*"]
+  },
+
+  "base_datos": {
+    "tipo": "SQLite",
+    "archivo": "musica.db",
+    "url_conexion": "sqlite:///./musica.db",
+    "orm": "SQLModel/SQLAlchemy"
+  },
+
+  "archivos_importantes": {
+    "main.py": "Archivo principal de la aplicación FastAPI",
+    "app/models.py": "Modelos de datos SQLModel con validaciones Pydantic",
+    "app/config.py": "Configuración de la aplicación (puerto, BD, CORS, etc.)",
+    "app/database.py": "Configuración y conexión a la base de datos",
+    "app/routers/usuarios.py": "Endpoints CRUD para usuarios",
+    "app/routers/canciones.py": "Endpoints CRUD para canciones + búsqueda",
+    "app/routers/favoritos.py": "Endpoints para gestión de favoritos",
+    ".env": "Variables de entorno",
+    "requirements.txt": "Dependencias de Python"
+  }
+}

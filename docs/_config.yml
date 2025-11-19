@@ -1,0 +1,33 @@
+# Configuración para GitHub Pages
+# Este archivo es necesario para que GitHub Pages reconozca la carpeta docs
+
+# URL del sitio cuando esté publicado
+url: "https://juanrs69.github.io"
+baseurl: "/lpa2-taller4"
+
+# Información del sitio
+title: "LPA2 Taller 4 - Frontend API Música"
+description: "Frontend moderno con Next.js y TypeScript para API de Música"
+author: "Juan Alejandro Ramirez Sanchez"
+
+# Configuración de GitHub Pages
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+
+# Configuraciones adicionales
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Archivos a incluir/excluir
+include:
+  - index.html
+  - styles.css
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

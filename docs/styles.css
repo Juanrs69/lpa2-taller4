@@ -1,0 +1,139 @@
+/* Estilos adicionales para la documentación del proyecto */
+
+/* Variables CSS personalizadas */
+:root {
+  --primary-color: #667eea;
+  --secondary-color: #764ba2;
+  --accent-color: #f093fb;
+  --text-dark: #1a202c;
+  --text-light: #718096;
+  --bg-light: #f7fafc;
+  --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Animaciones personalizadas */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes bounce-subtle {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Clases de utilidad */
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.animate-pulse-subtle {
+  animation: pulse 2s infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 1s infinite;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-pulse-subtle,
+  .animate-bounce-subtle {
+    animation: none;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Estilos para impresión */
+@media print {
+  .gradient-bg {
+    background: #667eea !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .card-hover {
+    break-inside: avoid;
+  }
+
+  .code-block {
+    background: #f1f5f9 !important;
+    color: #334155 !important;
+  }
+}
+
+/* Estilos para modo oscuro (si el usuario lo prefiere) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a202c;
+    color: #e2e8f0;
+  }
+
+  .bg-white {
+    background-color: #2d3748 !important;
+  }
+
+  .text-gray-800 {
+    color: #e2e8f0 !important;
+  }
+
+  .text-gray-600 {
+    color: #cbd5e0 !important;
+  }
+
+  .bg-gray-50 {
+    background-color: #1a202c !important;
+  }
+
+  .bg-gray-100 {
+    background-color: #2d3748 !important;
+  }
+}
