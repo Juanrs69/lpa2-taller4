@@ -15,254 +15,280 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
     <!-- Custom Styles -->
     <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .tech-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid rgba(226, 232, 240, 0.8);
             transition: all 0.3s ease;
         }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+        .tech-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
         }
-        .tech-badge {
-            transition: all 0.2s ease;
-        }
-        .tech-badge:hover {
-            transform: scale(1.05);
-        }
+
         .animate-fade-in {
-            animation: fadeIn 0.6s ease-in-out;
+            animation: fadeIn 0.8s ease-in-out;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
         .code-block {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            border-radius: 8px;
-            padding: 16px;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            border: 1px solid #334155;
             overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .feature-grid {
+            background: radial-gradient(circle at top right, #f1f5f9 0%, transparent 50%),
+                       radial-gradient(circle at bottom left, #e0e7ff 0%, transparent 50%);
+        }
+
+        .metric-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .icon-container {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .gradient-bg h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
-    <header class="gradient-bg text-white py-8 animate-fade-in">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">
-                    LPA2 Taller 4
-                </h1>
-                <h2 class="text-xl md:text-2xl mb-6 opacity-90">
-                    Frontend para API de Música
-                </h2>
-                <div class="flex flex-wrap justify-center gap-3 mb-6">
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">Next.js 16</span>
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">TypeScript</span>
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">FastAPI</span>
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">27 Tests</span>
+<body class="bg-gradient-to-br from-gray-50 via-white to-slate-50 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+                        <i data-lucide="music" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold gradient-text">LPA2 Taller 4</h1>
+                        <p class="text-sm text-gray-600">Frontend API Música</p>
+                    </div>
                 </div>
-                <p class="text-lg opacity-90 max-w-3xl mx-auto">
-                    Frontend moderno desarrollado con <strong>Next.js 16</strong> y <strong>TypeScript</strong>
-                    que consume la API de Música del lpa2-taller3. Incluye testing completo,
-                    herramientas de calidad de código y documentación profesional.
+                <div class="flex items-center space-x-4">
+                    <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank"
+                       class="flex items-center space-x-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="github" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 animate-fade-in">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <div class="inline-flex items-center bg-white/20 rounded-full px-4 py-2 mb-6">
+                        <i data-lucide="star" class="w-4 h-4 mr-2"></i>
+                        <span class="text-sm font-medium">Proyecto Completado</span>
+                    </div>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    Frontend Moderno para
+                    <span class="block gradient-text bg-white bg-clip-text text-transparent">API de Música</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
+                    Desarrollado con <strong>Next.js 16</strong> y <strong>TypeScript</strong>,
+                    este proyecto integra un frontend profesional con la API de música del lpa2-taller3,
+                    incluyendo testing completo y documentación exhaustiva.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-3 mb-10">
+                    <span class="bg-white/20 px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm">Next.js 16</span>
+                    <span class="bg-white/20 px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm">TypeScript 5.0</span>
+                    <span class="bg-white/20 px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm">FastAPI</span>
+                    <span class="bg-white/20 px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm">27 Tests Pasando</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#proyecto"
+                       class="bg-white text-purple-700 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center">
+                        <i data-lucide="arrow-down" class="w-5 h-5 mr-2"></i>
+                        Ver Detalles
+                    </a>
+                    <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank"
+                       class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-colors flex items-center justify-center">
+                        <i data-lucide="external-link" class="w-5 h-5 mr-2"></i>
+                        Código Fuente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Información del Proyecto -->
+    <section id="proyecto" class="py-20 scroll-reveal">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Información del Proyecto</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Proyecto académico desarrollado como parte del curso de Lenguajes de Programación Avanzados 2
                 </p>
             </div>
-        </div>
-    </header>
 
-    <!-- Información del Estudiante -->
-    <section class="py-12 animate-fade-in">
-        <div class="container mx-auto px-6">
-            <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Información del Proyecto</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="font-semibold text-gray-700 mb-3">Estudiante</h4>
-                        <p class="text-gray-600 mb-2"><strong>Nombre:</strong> Juan Alejandro Ramirez Sanchez</p>
-                        <p class="text-gray-600 mb-2"><strong>GitHub:</strong> <a href="https://github.com/Juanrs69" target="_blank" class="text-blue-600 hover:underline">@Juanrs69</a></p>
-                        <p class="text-gray-600 mb-4"><strong>Repositorio:</strong> <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank" class="text-blue-600 hover:underline">lpa2-taller4</a></p>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-700 mb-3">Detalles del Taller</h4>
-                        <p class="text-gray-600 mb-2"><strong>Materia:</strong> Lenguajes de Programación Avanzados 2</p>
-                        <p class="text-gray-600 mb-2"><strong>Taller:</strong> #4 - Frontend para API de Música</p>
-                        <p class="text-gray-600 mb-2"><strong>Fecha:</strong> Noviembre 2024</p>
-                        <p class="text-gray-600"><strong>Estado:</strong> <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Completado</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tecnologías Utilizadas -->
-    <section class="py-12 bg-gray-100 animate-fade-in">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">Tecnologías Utilizadas</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
-                    <div class="text-4xl mb-4 text-blue-600">⚙️</div>
-                    <h4 class="font-bold text-gray-800">Next.js 16</h4>
-                    <p class="text-gray-600 text-sm">Framework React con Turbopack</p>
-                </div>
-                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
-                    <div class="text-4xl mb-4">📘</div>
-                    <h4 class="font-bold text-gray-800">TypeScript</h4>
-                    <p class="text-gray-600 text-sm">Tipado estático para JavaScript</p>
-                </div>
-                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
-                    <div class="text-4xl mb-4">🎨</div>
-                    <h4 class="font-bold text-gray-800">Tailwind CSS</h4>
-                    <p class="text-gray-600 text-sm">Framework CSS utilitario</p>
-                </div>
-                <div class="bg-white rounded-lg p-6 text-center card-hover tech-badge">
-                    <div class="text-4xl mb-4 text-green-600">⚡</div>
-                    <h4 class="font-bold text-gray-800">FastAPI</h4>
-                    <p class="text-gray-600 text-sm">API REST con Python</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Características del Proyecto -->
-    <section class="py-12 animate-fade-in">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">Características Principales</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
-                    <div class="text-3xl mb-4">🧪</div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-3">Testing Completo</h4>
-                    <p class="text-gray-600 mb-4">27 tests automatizados con pytest y Jest para garantizar calidad del código.</p>
-                    <ul class="text-sm text-gray-500 space-y-1">
-                        <li>• Tests de documentación</li>
-                        <li>• Tests de configuración</li>
-                        <li>• Tests de integración</li>
-                        <li>• Tests unitarios</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
-                    <div class="text-3xl mb-4">🔍</div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-3">Calidad de Código</h4>
-                    <p class="text-gray-600 mb-4">ESLint, Prettier y pre-commit hooks para mantener código limpio y consistente.</p>
-                    <ul class="text-sm text-gray-500 space-y-1">
-                        <li>• Pre-commit hooks automáticos</li>
-                        <li>• Formateo de código</li>
-                        <li>• Linting avanzado</li>
-                        <li>• Type checking estricto</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
-                    <div class="text-3xl mb-4">📚</div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-3">Documentación Completa</h4>
-                    <p class="text-gray-600 mb-4">API completamente documentada con 22 endpoints y ejemplos de uso.</p>
-                    <ul class="text-sm text-gray-500 space-y-1">
-                        <li>• Swagger UI interactivo</li>
-                        <li>• Documentación JSON</li>
-                        <li>• README profesional</li>
-                        <li>• Guías de instalación</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
-                    <div class="text-3xl mb-4 text-purple-600">♫</div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-3">Gestión de Música</h4>
-                    <p class="text-gray-600 mb-4">CRUD completo para usuarios, canciones y sistema de favoritos.</p>
-                    <ul class="text-sm text-gray-500 space-y-1">
-                        <li>• Gestión de usuarios</li>
-                        <li>• Catálogo de canciones</li>
-                        <li>• Sistema de favoritos</li>
-                        <li>• Búsqueda avanzada</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
-                    <div class="text-3xl mb-4">📱</div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-3">UX/UI Moderna</h4>
-                    <p class="text-gray-600 mb-4">Interfaz responsiva con componentes accesibles y tema oscuro/claro.</p>
-                    <ul class="text-sm text-gray-500 space-y-1">
-                        <li>• Diseño responsivo</li>
-                        <li>• Dark/Light mode</li>
-                        <li>• Componentes Radix UI</li>
-                        <li>• Animaciones suaves</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
-                    <div class="text-3xl mb-4">⚡</div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-3">Rendimiento Optimizado</h4>
-                    <p class="text-gray-600 mb-4">Next.js 16 con Turbopack para desarrollo y build ultrarrápidos.</p>
-                    <ul class="text-sm text-gray-500 space-y-1">
-                        <li>• Turbopack bundler</li>
-                        <li>• Static generation</li>
-                        <li>• Code splitting</li>
-                        <li>• Image optimization</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Arquitectura del Sistema -->
-    <section class="py-12 bg-gray-100 animate-fade-in">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">Arquitectura del Sistema</h3>
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">Estructura del Proyecto</h4>
-                        <pre class="code-block text-sm">
-lpa2-taller4/
-├── frontend/                       # Next.js App
-│   ├── app/                    # App Router
-│   ├── components/             # React Components
-│   ├── hooks/                  # Custom Hooks
-│   ├── lib/                    # API Client
-│   └── __tests__/              # Frontend Tests
-├── tests/                         # Python Tests
-│   ├── test_documentacion.py   # API Docs Tests
-│   ├── test_frontend_config.py # Config Tests
-│   ├── test_integracion.py     # Integration Tests
-│   └── test_utils.py           # Unit Tests
-├── docs/                          # GitHub Pages
-├── documentacion_api_musica.json
-├── api_endpoints_para_v0.json
-└── run-tests.sh                  # Test Runner
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white rounded-2xl shadow-xl p-10 card-hover">
+                    <div class="flex items-center mb-8">
+                        <div class="icon-container bg-gradient-to-br from-blue-500 to-purple-600">
+                            <i data-lucide="user" class="w-8 h-8 text-white"></i>
                         </div>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">Flujo de Datos</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
-                                <p class="text-gray-700">Frontend Next.js (Puerto 3001)</p>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
-                                <p class="text-gray-700">API FastAPI (Puerto 8000)</p>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
-                                <p class="text-gray-700">Base de Datos SQLite</p>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
-                                <p class="text-gray-700">Tests Automatizados</p>
+
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Información del Estudiante</h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full mr-4"></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Nombre Completo</p>
+                                <p class="text-lg font-semibold text-gray-900">Juan Alejandro Ramirez Sanchez</p>
                             </div>
                         </div>
 
-                        <div class="mt-8">
-                            <h5 class="font-semibold text-gray-800 mb-3">🔗 Enlaces Importantes</h5>
-                            <div class="space-y-2">
-                                <a href="http://localhost:3001" target="_blank" class="block text-blue-600 hover:underline">• Frontend: http://localhost:3001</a>
-                                <a href="http://127.0.0.1:8000/docs" target="_blank" class="block text-blue-600 hover:underline">• API Docs: http://127.0.0.1:8000/docs</a>
-                                <a href="http://127.0.0.1:8000/health" target="_blank" class="block text-blue-600 hover:underline">• Health Check: /health</a>
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full mr-4"></div>
+                            <div>
+                                <p class="text-sm text-gray-500">GitHub</p>
+                                <a href="https://github.com/Juanrs69" target="_blank"
+                                   class="text-lg font-semibold text-purple-600 hover:text-purple-700">@Juanrs69</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full mr-4"></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Repositorio</p>
+                                <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank"
+                                   class="text-lg font-semibold text-purple-600 hover:text-purple-700">lpa2-taller4</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl p-10 card-hover">
+                    <div class="flex items-center mb-8">
+                        <div class="icon-container bg-gradient-to-br from-green-500 to-teal-600">
+                            <i data-lucide="book-open" class="w-8 h-8 text-white"></i>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Detalles Académicos</h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-4"></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Materia</p>
+                                <p class="text-lg font-semibold text-gray-900">Lenguajes de Programación Avanzados 2</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-4"></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Proyecto</p>
+                                <p class="text-lg font-semibold text-gray-900">Taller #4 - Frontend para API de Música</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-4"></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Período</p>
+                                <p class="text-lg font-semibold text-gray-900">Noviembre 2024</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-4"></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Estado</p>
+                                <span class="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full font-semibold">
+                                    <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
+                                    Completado
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -271,198 +297,446 @@ lpa2-taller4/
         </div>
     </section>
 
-    <!-- Instalación y Uso -->
-    <section class="py-12 animate-fade-in">
+    <!-- Stack Tecnológico -->
+    <section class="py-20 bg-gray-50 scroll-reveal">
         <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">Instalación y Uso</h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <h4 class="text-xl font-bold text-gray-800 mb-4">⚡ Ejecución Rápida</h4>
-                    <p class="text-gray-600 mb-4">Script automatizado para ejecutar todo el proyecto:</p>
-                    <div class="code-block">
-# Clonar repositorio
-git clone https://github.com/Juanrs69/lpa2-taller4.git
-cd lpa2-taller4
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Stack Tecnológico</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Tecnologías modernas seleccionadas para crear una solución robusta, escalable y mantenible
+                </p>
+            </div>
 
-# Ejecutar tests y verificaciones
-./run-tests.sh
-
-# Ejecutar frontend
-cd frontend && pnpm dev
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="tech-card rounded-2xl p-8 text-center card-hover">
+                    <div class="icon-container bg-gradient-to-br from-black to-gray-800 mb-6">
+                        <i data-lucide="layers" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Next.js 16</h4>
+                    <p class="text-gray-600 mb-4">Framework React con App Router y Turbopack para desarrollo ultrarrápido</p>
+                    <div class="flex justify-center">
+                        <span class="bg-black text-white px-3 py-1 rounded-full text-sm font-medium">Frontend</span>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <h4 class="text-xl font-bold text-gray-800 mb-4">🔧 Configuración Manual</h4>
-                    <p class="text-gray-600 mb-4">Pasos detallados para configuración completa:</p>
-                    <div class="code-block">
-# 1. Backend (API del lpa2-taller3)
-cd ../lpa2-taller3
-python main.py
-
-# 2. Frontend (Nueva terminal)
-cd lpa2-taller4/frontend
-pnpm install
-pnpm dev
-
-# ✅ Frontend: http://localhost:3001
-# ✅ API: http://127.0.0.1:8000
+                <div class="tech-card rounded-2xl p-8 text-center card-hover">
+                    <div class="icon-container bg-gradient-to-br from-blue-600 to-blue-800 mb-6">
+                        <i data-lucide="code-2" class="w-8 h-8 text-white"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">TypeScript 5.0</h4>
+                    <p class="text-gray-600 mb-4">Tipado estático robusto para JavaScript con mejor DX</p>
+                    <div class="flex justify-center">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">Language</span>
+                    </div>
+                </div>
+
+                <div class="tech-card rounded-2xl p-8 text-center card-hover">
+                    <div class="icon-container bg-gradient-to-br from-cyan-500 to-blue-500 mb-6">
+                        <i data-lucide="palette" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Tailwind CSS</h4>
+                    <p class="text-gray-600 mb-4">Framework CSS utilitario para diseño rápido y responsivo</p>
+                    <div class="flex justify-center">
+                        <span class="bg-cyan-500 text-white px-3 py-1 rounded-full text-sm font-medium">Styling</span>
+                    </div>
+                </div>
+
+                <div class="tech-card rounded-2xl p-8 text-center card-hover">
+                    <div class="icon-container bg-gradient-to-br from-green-600 to-teal-600 mb-6">
+                        <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">FastAPI</h4>
+                    <p class="text-gray-600 mb-4">API REST moderna con Python, documentación automática</p>
+                    <div class="flex justify-center">
+                        <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">Backend</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tecnologías Adicionales -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center text-gray-900 mb-8">Herramientas de Desarrollo</h3>
+                <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                        <i data-lucide="flask-conical" class="w-8 h-8 text-red-500 mx-auto mb-3"></i>
+                        <p class="font-semibold text-gray-700">Jest</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                        <i data-lucide="bug" class="w-8 h-8 text-yellow-500 mx-auto mb-3"></i>
+                        <p class="font-semibold text-gray-700">ESLint</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                        <i data-lucide="paintbrush" class="w-8 h-8 text-pink-500 mx-auto mb-3"></i>
+                        <p class="font-semibold text-gray-700">Prettier</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-blue-500 mx-auto mb-3"></i>
+                        <p class="font-semibold text-gray-700">Pytest</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                        <i data-lucide="git-branch" class="w-8 h-8 text-orange-500 mx-auto mb-3"></i>
+                        <p class="font-semibold text-gray-700">Pre-commit</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                        <i data-lucide="database" class="w-8 h-8 text-gray-500 mx-auto mb-3"></i>
+                        <p class="font-semibold text-gray-700">SQLite</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características Principales -->
+    <section class="py-20 feature-grid scroll-reveal">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Características Principales</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Funcionalidades avanzadas que hacen de este proyecto una solución completa y profesional
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl card-hover border border-white/50">
+                    <div class="icon-container bg-gradient-to-br from-red-500 to-pink-600 mb-6">
+                        <i data-lucide="flask-conical" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Testing Exhaustivo</h3>
+                    <p class="text-gray-600 mb-6">27 tests automatizados garantizan la calidad y estabilidad del código</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Tests de documentación API</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Tests de configuración frontend</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Tests de integración completa</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Tests unitarios y utilidades</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl card-hover border border-white/50">
+                    <div class="icon-container bg-gradient-to-br from-blue-500 to-indigo-600 mb-6">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Calidad de Código</h3>
+                    <p class="text-gray-600 mb-6">Herramientas automáticas para mantener código limpio y profesional</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Pre-commit hooks automáticos</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>ESLint para linting avanzado</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Prettier para formateo consistente</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>TypeScript strict mode</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl card-hover border border-white/50">
+                    <div class="icon-container bg-gradient-to-br from-purple-500 to-violet-600 mb-6">
+                        <i data-lucide="music" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">API de Música</h3>
+                    <p class="text-gray-600 mb-6">Sistema completo de gestión musical con 22 endpoints documentados</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Gestión completa de usuarios</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>CRUD de canciones con búsqueda</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Sistema de favoritos avanzado</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>Documentación Swagger interactiva</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Métricas del Proyecto -->
-    <section class="py-12 bg-gray-100 animate-fade-in">
+    <section class="py-20 bg-white scroll-reveal">
         <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">📊 Métricas del Proyecto</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-white rounded-lg p-6 text-center card-hover">
-                    <div class="text-3xl font-bold text-blue-600 mb-2">27</div>
-                    <p class="text-gray-600 font-semibold">Tests Automatizados</p>
-                    <p class="text-xs text-gray-500 mt-1">100% Pasando ✅</p>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Métricas del Proyecto</h2>
+                <p class="text-xl text-gray-600">Números que demuestran la calidad y completitud de la implementación</p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="metric-card rounded-2xl p-8 text-center card-hover">
+                    <div class="text-4xl font-bold gradient-text mb-2" data-count="27">0</div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Tests</h4>
+                    <p class="text-sm text-gray-600">Automatizados</p>
+                    <div class="mt-4">
+                        <span class="inline-flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
+                            <i data-lucide="check-circle" class="w-3 h-3 mr-1"></i>
+                            100% Pasando
+                        </span>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg p-6 text-center card-hover">
-                    <div class="text-3xl font-bold text-green-600 mb-2">22</div>
-                    <p class="text-gray-600 font-semibold">Endpoints API</p>
-                    <p class="text-xs text-gray-500 mt-1">Completamente Documentados</p>
+
+                <div class="metric-card rounded-2xl p-8 text-center card-hover">
+                    <div class="text-4xl font-bold gradient-text mb-2" data-count="22">0</div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Endpoints</h4>
+                    <p class="text-sm text-gray-600">API REST</p>
+                    <div class="mt-4">
+                        <span class="inline-flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                            <i data-lucide="zap" class="w-3 h-3 mr-1"></i>
+                            Documentados
+                        </span>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg p-6 text-center card-hover">
-                    <div class="text-3xl font-bold text-purple-600 mb-2">5</div>
-                    <p class="text-gray-600 font-semibold">Archivos Docs</p>
-                    <p class="text-xs text-gray-500 mt-1">JSON + Markdown</p>
+
+                <div class="metric-card rounded-2xl p-8 text-center card-hover">
+                    <div class="text-4xl font-bold gradient-text mb-2" data-count="100">0</div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">TypeScript</h4>
+                    <p class="text-sm text-gray-600">Coverage</p>
+                    <div class="mt-4">
+                        <span class="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">
+                            <i data-lucide="shield" class="w-3 h-3 mr-1"></i>
+                            Strict Mode
+                        </span>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg p-6 text-center card-hover">
-                    <div class="text-3xl font-bold text-orange-600 mb-2">100%</div>
-                    <p class="text-gray-600 font-semibold">TypeScript</p>
-                    <p class="text-xs text-gray-500 mt-1">Tipado Estricto</p>
+
+                <div class="metric-card rounded-2xl p-8 text-center card-hover">
+                    <div class="text-4xl font-bold gradient-text mb-2" data-count="5">0</div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Archivos</h4>
+                    <p class="text-sm text-gray-600">Documentación</p>
+                    <div class="mt-4">
+                        <span class="inline-flex items-center bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
+                            <i data-lucide="book" class="w-3 h-3 mr-1"></i>
+                            Completos
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Enlaces Importantes -->
-    <section class="py-12 animate-fade-in">
+    <!-- Arquitectura y Instalación -->
+    <section class="py-20 bg-gray-50 scroll-reveal">
         <div class="container mx-auto px-6">
-            <div class="bg-white rounded-xl shadow-lg p-8 text-center">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">🔗 Enlaces Importantes</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank"
-                       class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors block">
-                        📱 Repositorio GitHub
-                    </a>
-                    <a href="https://github.com/Juanrs69/lpa2-taller4/blob/main/README.md" target="_blank"
-                       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors block">
-                        📚 Documentación Completa
-                    </a>
-                    <a href="https://github.com/Juanrs69/lpa2-taller4/tree/main/tests" target="_blank"
-                       class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors block">
-                        🧪 Tests del Proyecto
-                    </a>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Arquitectura y Instalación</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Estructura del proyecto y guía rápida para poner en marcha la aplicación
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Estructura del Proyecto -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                    <div class="flex items-center mb-8">
+                        <div class="icon-container bg-gradient-to-br from-gray-700 to-gray-900">
+                            <i data-lucide="folder-tree" class="w-8 h-8 text-white"></i>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Estructura del Proyecto</h3>
+                    <div class="code-block">
+lpa2-taller4/
+├── frontend/                   # Next.js App
+│   ├── app/                   # App Router
+│   ├── components/            # React Components
+│   ├── hooks/                 # Custom Hooks
+│   ├── lib/                   # API Client
+│   └── __tests__/             # Frontend Tests
+├── tests/                     # Python Tests
+│   ├── test_documentacion.py  # API Docs Tests
+│   ├── test_frontend_config.py # Config Tests
+│   ├── test_integracion.py    # Integration Tests
+│   └── test_utils.py          # Unit Tests
+├── docs/                      # GitHub Pages
+├── documentacion_api_musica.json
+├── api_endpoints_para_v0.json
+└── run-tests.sh              # Test Runner
+                    </div>
+                </div>
+
+                <!-- Instalación Rápida -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                    <div class="flex items-center mb-8">
+                        <div class="icon-container bg-gradient-to-br from-green-600 to-teal-600">
+                            <i data-lucide="rocket" class="w-8 h-8 text-white"></i>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Instalación Rápida</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-gray-600 mb-3">1. Clonar repositorio</p>
+                            <div class="code-block text-sm">
+git clone https://github.com/Juanrs69/lpa2-taller4.git
+cd lpa2-taller4
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 mb-3">2. Ejecutar tests</p>
+                            <div class="code-block text-sm">
+./run-tests.sh
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-600 mb-3">3. Iniciar frontend</p>
+                            <div class="code-block text-sm">
+cd frontend && pnpm dev
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                        <h4 class="font-semibold text-blue-900 mb-2">Enlaces de Desarrollo</h4>
+                        <div class="space-y-1 text-sm">
+                            <p><strong class="text-blue-700">Frontend:</strong> http://localhost:3001</p>
+                            <p><strong class="text-blue-700">API Docs:</strong> http://127.0.0.1:8000/docs</p>
+                            <p><strong class="text-blue-700">Health Check:</strong> http://127.0.0.1:8000/health</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="gradient-bg text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-lg mb-4">
-                <strong>Juan Alejandro Ramirez Sanchez</strong>
-            </p>
-            <p class="opacity-90 mb-4">
-                Lenguajes de Programación Avanzados 2 - Taller 4
-            </p>
-            <p class="text-sm opacity-75">
-                Noviembre 2024 • Desarrollado usando Next.js, TypeScript y FastAPI
-            </p>
-            <div class="mt-6 flex justify-center space-x-4">
-                <a href="https://github.com/Juanrs69" target="_blank"
-                   class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
-                    GitHub
-                </a>
-                <a href="https://github.com/Juanrs69/lpa2-taller4" target="_blank"
-                   class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
-                    Proyecto
-                </a>
+    <footer class="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        Sistema de Gestión Musical
+                    </h3>
+                    <p class="text-gray-300">
+                        Plataforma académica desarrollada como parte del taller de Lenguajes de Programación Avanzados.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Enlaces Útiles</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#hero" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                        <li><a href="#project-info" class="hover:text-blue-400 transition-colors">Proyecto</a></li>
+                        <li><a href="#tech-stack" class="hover:text-blue-400 transition-colors">Tecnologías</a></li>
+                        <li><a href="https://github.com/Juanrs69/lpa2-taller4" class="hover:text-blue-400 transition-colors" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Desarrollo</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Frontend: Next.js 16</li>
+                        <li>Backend: FastAPI</li>
+                        <li>Base de Datos: SQLite</li>
+                        <li>Tests: Jest + Pytest</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2024 LPA2 Taller 4 - Juan Alejandro Ramirez Sanchez - Desarrollado para fines académicos
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript para efectos -->
     <script>
-        // Animación de scroll suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Animated counters
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
                 }
-            });
-        });
-
-        // Animación de aparición en scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observar elementos para animación
-        document.querySelectorAll('.card-hover').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Contador animado para métricas
-        function animateCounter(element, target, duration = 2000) {
-            const start = performance.now();
-            const initialValue = 0;
-
-            function update(currentTime) {
-                const elapsed = currentTime - start;
-                const progress = Math.min(elapsed / duration, 1);
-
-                const currentValue = Math.floor(initialValue + (target - initialValue) * progress);
-                element.textContent = target === 100 ? currentValue + '%' : currentValue;
-
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
-            }
-
-            requestAnimationFrame(update);
+                element.textContent = Math.floor(current);
+            }, 40);
         }
 
-        // Animar contadores cuando sean visibles
-        const metricsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target.querySelector('.text-3xl');
-                    const target = parseInt(counter.textContent);
-                    animateCounter(counter, target);
-                    metricsObserver.unobserve(entry.target);
+        // Scroll reveal animation
+        function handleScrollReveal() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            const counters = document.querySelectorAll('.counter');
+
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
                 }
             });
-        });
 
-        document.querySelectorAll('.grid-cols-2.md\\:grid-cols-4 > div').forEach(el => {
-            metricsObserver.observe(el);
+            // Animate counters when visible
+            counters.forEach(counter => {
+                const rect = counter.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0 && !counter.classList.contains('animated')) {
+                    counter.classList.add('animated');
+                    const target = parseInt(counter.dataset.count || counter.textContent);
+                    animateCounter(counter, target);
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initSmoothScrolling();
+            initMobileMenu();
+            handleScrollReveal();
+
+            // Add scroll event listeners
+            window.addEventListener('scroll', () => {
+                handleScrollReveal();
+                handleNavbarScroll();
+            });
+
+            // Initial navbar state
+            handleNavbarScroll();
+
+            // Animate metric counters on page load
+            setTimeout(() => {
+                document.querySelectorAll('[data-count]').forEach(counter => {
+                    const target = parseInt(counter.dataset.count);
+                    animateCounter(counter, target);
+                });
+            }, 1000);
         });
     </script>
 </body>
