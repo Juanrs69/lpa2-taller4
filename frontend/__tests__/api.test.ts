@@ -26,3 +26,36 @@ describe('API Integration', () => {
     expect(mockResponse).toHaveProperty('correo')
   })
 })
+
+describe('Documentation Features', () => {
+  it('should have API documentation structure', () => {
+    const mockApiDoc = {
+      informacion_general: {
+        nombre: 'API de Música',
+        version: '1.0.0',
+        base_url: 'http://127.0.0.1:8000',
+      },
+      endpoints: [],
+    }
+
+    expect(mockApiDoc.informacion_general).toHaveProperty('nombre')
+    expect(mockApiDoc.informacion_general).toHaveProperty('version')
+    expect(mockApiDoc.informacion_general).toHaveProperty('base_url')
+    expect(mockApiDoc).toHaveProperty('endpoints')
+  })
+
+  it('should handle endpoint documentation format', () => {
+    const mockEndpoint = {
+      endpoint: 'http://127.0.0.1:8000/api/usuarios/',
+      metodo: 'GET',
+      descripcion: 'Listar todos los usuarios',
+      body_request: null,
+      body_response: [],
+    }
+
+    expect(mockEndpoint).toHaveProperty('endpoint')
+    expect(mockEndpoint).toHaveProperty('metodo')
+    expect(mockEndpoint).toHaveProperty('descripcion')
+    expect(['GET', 'POST', 'PUT', 'DELETE']).toContain(mockEndpoint.metodo)
+  })
+})

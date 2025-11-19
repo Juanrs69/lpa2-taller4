@@ -1,13 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { Music2, Users, Heart, Moon, Sun } from 'lucide-react'
+import { Music2, Users, Heart, Moon, Sun, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UsersSection } from '@/components/sections/users-section'
 import { SongsSection } from '@/components/sections/songs-section'
 import { FavoritesSection } from '@/components/sections/favorites-section'
+import DocumentationSection from '@/components/sections/documentation-section'
 
-type Section = 'users' | 'songs' | 'favorites'
+type Section = 'users' | 'songs' | 'favorites' | 'documentation'
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<Section>('songs')
@@ -79,6 +80,14 @@ export default function Home() {
               <Heart className="h-4 w-4" />
               Favoritos
             </Button>
+            <Button
+              variant={activeSection === 'documentation' ? 'default' : 'ghost'}
+              onClick={() => setActiveSection('documentation')}
+              className="gap-2 rounded-b-none"
+            >
+              <FileText className="h-4 w-4" />
+              API Docs
+            </Button>
           </div>
         </div>
       </nav>
@@ -88,6 +97,7 @@ export default function Home() {
         {activeSection === 'users' && <UsersSection />}
         {activeSection === 'songs' && <SongsSection />}
         {activeSection === 'favorites' && <FavoritesSection />}
+        {activeSection === 'documentation' && <DocumentationSection />}
       </main>
     </div>
   )
