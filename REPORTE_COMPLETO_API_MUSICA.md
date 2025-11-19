@@ -1,10 +1,10 @@
 # Reporte Completo - API de Música (lpa2-taller3)
 
-## 🎯 Resumen Ejecutivo
+## Resumen Ejecutivo
 
 He completado la investigación del proyecto **lpa2-taller3** ubicado en `/home/juana/proyectos/lpa2-taller3`. Este es un proyecto de **API RESTful** desarrollado con **FastAPI** para gestionar usuarios, canciones y favoritos musicales.
 
-## 📊 Información General del Proyecto
+## Información General del Proyecto
 
 - **Nombre**: API de Música
 - **Versión**: 1.0.0
@@ -15,7 +15,7 @@ He completado la investigación del proyecto **lpa2-taller3** ubicado en `/home/
 - **URL Base**: http://127.0.0.1:8000
 - **Documentación**: http://127.0.0.1:8000/docs
 
-## 🏗️ Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 lpa2-taller3/
@@ -36,7 +36,7 @@ lpa2-taller3/
 └── README.md                 # Documentación del proyecto
 ```
 
-## 🗄️ Modelos de Datos
+## Modelos de Datos
 
 ### Usuario
 
@@ -75,9 +75,9 @@ lpa2-taller3/
 }
 ```
 
-## 🚀 Endpoints Disponibles
+## Endpoints Disponibles
 
-### 🔧 Endpoints Generales
+### Endpoints Generales
 
 #### 1. Frontend
 
@@ -110,7 +110,7 @@ lpa2-taller3/
 }
 ```
 
-### 👥 Endpoints de Usuarios
+### Endpoints de Usuarios
 
 #### 1. Listar Usuarios
 
@@ -154,7 +154,7 @@ lpa2-taller3/
 - **GET** `/api/usuarios/{usuario_id}/favoritos`
 - **Response**: Usuario con lista de favoritos anidada
 
-### 🎵 Endpoints de Canciones
+### Endpoints de Canciones
 
 #### 1. Listar Canciones
 
@@ -205,7 +205,7 @@ lpa2-taller3/
 - **Status**: 204
 - **Nota**: Elimina también todos los favoritos asociados
 
-### ⭐ Endpoints de Favoritos
+### Endpoints de Favoritos
 
 #### 1. Listar Favoritos
 
@@ -245,7 +245,7 @@ lpa2-taller3/
 
 - **DELETE** `/api/favoritos/{id_usuario}/canciones/{id_cancion}`
 
-## 🚨 Códigos de Error Manejados
+## Códigos de Error Manejados
 
 | Código | Descripción                                  |
 | ------ | -------------------------------------------- |
@@ -257,7 +257,7 @@ lpa2-taller3/
 | 422    | Unprocessable Entity - Validación Pydantic   |
 | 500    | Internal Server Error - Error del servidor   |
 
-## ⚙️ Configuración Técnica
+## Configuración Técnica
 
 ### Base de Datos
 
@@ -285,7 +285,7 @@ SECRET_KEY=mi_clave_secreta_super_segura_123
 ENVIRONMENT=development
 ```
 
-## 🔍 Características Especiales
+## Características Especiales
 
 ### Validaciones Pydantic
 
@@ -306,7 +306,7 @@ ENVIRONMENT=development
 - **ReDoc**: `/redoc` - Documentación alternativa
 - **Metadatos**: Descripciones, ejemplos, tags organizados
 
-## 🏃 Cómo Ejecutar la API
+## Cómo Ejecutar la API
 
 ```bash
 # En el directorio lpa2-taller3
@@ -316,7 +316,7 @@ python main.py
 uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-## 📝 Archivos Clave Analizados
+## Archivos Clave Analizados
 
 1. **`main.py`**: Aplicación FastAPI principal con middleware CORS, routers y lifecycle
 2. **`app/config.py`**: Configuración por entornos (development/testing/production)
@@ -326,18 +326,18 @@ uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 6. **`app/routers/canciones.py`**: CRUD + búsqueda avanzada de canciones
 7. **`app/routers/favoritos.py`**: Gestión de favoritos con endpoints alternativos
 
-## ✅ Conclusión
+## Conclusión
 
 La API está **completa y bien estructurada** con:
 
-- ✅ **22 endpoints** funcionales distribuidos en 3 módulos
-- ✅ **CRUD completo** para todas las entidades
-- ✅ **Validaciones robustas** con Pydantic
-- ✅ **Documentación automática** con FastAPI
-- ✅ **Búsqueda avanzada** en canciones
-- ✅ **Paginación** implementada
-- ✅ **Manejo de errores** apropiado
-- ✅ **Arquitectura modular** bien organizada
+- **22 endpoints** funcionales distribuidos en 3 módulos
+- **CRUD completo** para todas las entidades
+- **Validaciones robustas** con Pydantic
+- **Documentación automática** con FastAPI
+- **Búsqueda avanzada** en canciones
+- **Paginación** implementada
+- **Manejo de errores** apropiado
+- **Arquitectura modular** bien organizada
 
 El proyecto sigue las **mejores prácticas** de FastAPI y está listo para desarrollo y pruebas.
 

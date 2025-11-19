@@ -1,4 +1,4 @@
-# 🎵 PROMPT OPTIMIZADO PARA V0.APP - API DE MÚSICA
+# PROMPT OPTIMIZADO PARA V0.APP - API DE MÚSICA
 
 ## Instrucciones para usar este prompt:
 
@@ -8,18 +8,18 @@
 
 ---
 
-## ⭐ INICIO DEL PROMPT
+## INICIO DEL PROMPT
 
 Eres un ingeniero de frontend senior especializado en React, TypeScript y Tailwind CSS. Tu tarea es diseñar una aplicación web responsiva y eficiente que consuma una API de música existente.
 
-### 🎯 CONTEXTO DE LA API
+### CONTEXTO DE LA API
 
 Crea un frontend completo para esta API de música con FastAPI que gestiona usuarios, canciones y favoritos:
 
 **API Base URL:** `http://127.0.0.1:8000`
 **22 endpoints disponibles** en 3 módulos principales:
 
-#### 📋 ENDPOINTS CRÍTICOS:
+#### ENDPOINTS CRÍTICOS:
 
 **USUARIOS:**
 
@@ -43,7 +43,7 @@ Crea un frontend completo para esta API de música con FastAPI que gestiona usua
 - `POST /api/favoritos/` - Marcar favorito (id_usuario, id_cancion)
 - `DELETE /api/favoritos/{id}` - Eliminar favorito
 
-#### 🗂️ ESTRUCTURA DE DATOS:
+#### ESTRUCTURA DE DATOS:
 
 ```typescript
 interface Usuario {
@@ -74,7 +74,7 @@ interface Favorito {
 }
 ```
 
-### 🎨 REQUISITOS DE DISEÑO (CRÍTICO):
+### REQUISITOS DE DISEÑO (CRÍTICO):
 
 #### 1. **ARQUITECTURA DE LA APLICACIÓN:**
 
@@ -86,7 +86,7 @@ interface Favorito {
 
 #### 2. **FUNCIONALIDADES ESPECÍFICAS POR SECCIÓN:**
 
-**📱 SECCIÓN USUARIOS:**
+**SECCIÓN USUARIOS:**
 
 - **Tabla/lista** de usuarios con paginación
 - **Formulario modal** para crear/editar usuarios
@@ -94,7 +94,7 @@ interface Favorito {
 - **Botón "Ver favoritos"** que muestre las canciones favoritas del usuario
 - **Confirmación** antes de eliminar (alerta de eliminación en cascada)
 
-**🎵 SECCIÓN CANCIONES:**
+**SECCIÓN CANCIONES:**
 
 - **Grid/tabla** de canciones con covers placeholder
 - **Búsqueda avanzada** con filtros: título, artista, género, año
@@ -103,7 +103,7 @@ interface Favorito {
 - **Formato de duración** legible (ej: "5:54" en vez de "354")
 - **Botón "Marcar como favorito"** (seleccionar usuario primero)
 
-**⭐ SECCIÓN FAVORITOS:**
+**SECCIÓN FAVORITOS:**
 
 - **Lista/grid** mostrando usuario + canción + fecha
 - **Filtros** por usuario o género musical
@@ -127,7 +127,7 @@ interface Favorito {
 - **Auto-save** en formularios largos
 - **Indicadores visuales** de validación (verde/rojo)
 
-### ⚡ ESPECIFICACIONES TÉCNICAS:
+### ESPECIFICACIONES TÉCNICAS:
 
 #### 1. **MANEJO DE ERRORES ROBUSTO:**
 
@@ -158,7 +158,7 @@ interface Favorito {
 - **Año** validado contra año actual
 - **Prevención** de favoritos duplicados (deshabilitar botón)
 
-### 🎨 ESTILO Y BRANDING:
+### ESTILO Y BRANDING:
 
 - **Paleta musical**: Tonos oscuros con acentos vibrantes (púrpura/cyan)
 - **Iconografía**: Lucide React o Heroicons (música, usuarios, corazones)
@@ -166,7 +166,7 @@ interface Favorito {
 - **Animaciones**: Framer Motion para transiciones suaves
 - **Componentes**: shadcn/ui o Headless UI + Tailwind
 
-### 📋 ENTREGABLES ESPERADOS:
+### ENTREGABLES ESPERADOS:
 
 1. **App.tsx** con routing y layout principal
 2. **Componentes** organizados por feature (users/, songs/, favorites/)
@@ -176,7 +176,7 @@ interface Favorito {
 6. **Constants** con endpoints y configuración
 7. **README** con instrucciones de instalación y configuración
 
-### 🚀 CONFIGURACIÓN DEL PROYECTO:
+### CONFIGURACIÓN DEL PROYECTO:
 
 - **Vite + React + TypeScript**
 - **Tailwind CSS** para estilos
@@ -188,8 +188,8 @@ interface Favorito {
 
 ---
 
-## ⭐ FIN DEL PROMPT
+## FIN DEL PROMPT
 
-### 📎 ARCHIVOS ADICIONALES:
+### ARCHIVOS ADICIONALES:
 
 Asegúrate de usar el archivo `api_endpoints_para_v0.json` que contiene los detalles completos de todos los endpoints, validaciones y ejemplos de requests/responses.
